@@ -1,0 +1,78 @@
+.mat-card {
+  margin: auto;
+  max-width: 600px;
+  padding: 0 !important;
+  color: #fff;
+
+  .score-board {
+    background-image: url('/assets/cricket-ground.webp');
+    backdrop-filter: blur(5px);
+    background-size: cover;
+    min-height: 100px;
+    padding: 20px;
+
+    .team-scores {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+
+      .vs {
+        border-radius: 50%;
+        background-color: grey;
+        height: 30px;
+        width: 30px;
+        display: grid;
+        align-items: center;
+        text-align: center;
+      }
+
+      .team-score {
+        .score {
+          font-size: 20px
+        }
+
+        .team-icon {
+          display: grid;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          border: 3px solid #fff;
+          text-align: center;
+          align-items: center;
+          font-size: 40px;
+        }
+
+        &.team-a {
+          display: grid;
+          grid-template-columns: 1fr 60px;
+          align-items: center;
+          text-align: end;
+          gap: 8px;
+        }
+
+        &.team-b {
+          display: grid;
+          grid-template-columns: 60px 1fr;
+          align-items: center;
+        }
+      }
+    }
+
+  }
+
+  .player-stat {
+    background-color: rgb(56, 53, 53);
+    padding: 20px;
+    // color: #000;
+
+    table {
+      width: 100%;
+      text-align: center;
+      tr, td {
+        border: 1px solid #fff;
+        padding: 5px;
+      }
+    }
+  }
+}
