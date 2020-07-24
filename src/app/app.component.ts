@@ -31,6 +31,11 @@ export class AppComponent {
   /** Total number of balls */
   public totalBalls: number;
 
+  /** Total score */
+  public totalScore: number;
+
+  public totalWickets: number;
+
   public gameStatus: string;
 
   public innings: number;
@@ -47,6 +52,8 @@ export class AppComponent {
     this.gameStatus = 'Start';
     this.innings = 1;
     this.startGame = 0;
+    this.totalScore = 0;
+    this.totalWickets = 0;
   }
 
   /** Start the game */
@@ -88,25 +95,29 @@ export class AppComponent {
           }
           this.battingPlayer = this.teamA[batsmanArr].player;
           const randomScore = this.randomScore[Math.floor(Math.random() * this.randomScore.length)];
-          if (typeof(randomScore) === 'number') {
+          if (typeof (randomScore) === 'number') {
             this.teamA[batsmanArr].battingStats.bowls += 1; // number of balls played by the player
             switch (randomScore) {
               case 4:
                 this.teamA[batsmanArr].battingStats.fours += 1; // number of 4s
                 this.teamA[batsmanArr].battingStats.runs += randomScore;
+                this.totalScore += randomScore;
                 break;
               case 6:
                 this.teamA[batsmanArr].battingStats.sixs += 1;  // number of 6s
                 this.teamA[batsmanArr].battingStats.runs += randomScore;
+                this.totalScore += randomScore;
                 break;
               default:
                 this.teamA[batsmanArr].battingStats.runs += randomScore;
+                this.totalScore += randomScore;
                 break;
             }
           } else {
             switch (randomScore) {
               case 'wd':
                 this.teamA[batsmanArr].battingStats.runs += 1;
+                this.totalScore += 1;
                 break;
               case 'nb':
                 this.teamA[batsmanArr].battingStats.runs += 0;
@@ -115,6 +126,12 @@ export class AppComponent {
                 this.teamA[batsmanArr].battingStats.wicketBy = this.bowlingPlayer;
             }
           }
+          // this.teamA.forEach(team => {
+          //   this.totalScore += team.battingStats.runs;
+          //   if (team.battingStats.wicketBy.length > 0) {
+          //     this.totalWickets = team.battingStats.wicketBy.length;
+          //   }
+          // });
         }
 
         // stop if the game reaches to 20 overs;
